@@ -19,7 +19,7 @@
     .nav-link.active {
       color: white;
     }
-  
+
 
   .navbar-toggler {
     color: #f0f0f0;
@@ -27,7 +27,7 @@
   }
 
   .navbar-toggler-icon {
-    background-image: transparent;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.5);
   }
 
   .navbar-text {
