@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var cacheName = 'excalc 0.4.4';
+var cacheName = 'excalc 0.4.5';
 var filesToCache = [
   '/',
   '/index.html',
