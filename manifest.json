@@ -12,7 +12,7 @@
       "sizes": "512x512",
       "type": "image/png"
     }],
-    "start_url": "/ExtruderCalc/",
+    "start_url": "/",
     "background_color": "white",
     "theme_color": "#790005",
     "display": "standalone"
