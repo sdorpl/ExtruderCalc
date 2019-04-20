@@ -8,6 +8,10 @@
     color: rgba(255,255,255,.8);
 }
 
+.navbar-custom .navbar-brand:hover {
+    color:white;
+}
+
 /* change the link color */
 .navbar-custom .navbar-nav .nav-link {
     color: rgba(255,255,255,.5);
