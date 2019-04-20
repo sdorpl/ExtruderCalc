@@ -16,6 +16,7 @@ var cacheName = 'excalc 0.4.6';
 var filesToCache = [
   '/',
   '/index.html',
+  '/about.html',
   '/favicon.ico',
   '/images/ico_512x512.png',
   '/images/ico_192x192.png',
