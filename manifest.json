@@ -1,0 +1,19 @@
+{
+    "name": "Extruder Calc",
+    "short_name": "Extruder Calc",
+	"version": "0.4.3",
+	"description": "Prosty kalkulator pracy przy wytłaczarce profili PVC.",
+    "icons": [{
+      "src": "images/ico_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }, {
+      "src": "/images/ico_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }],
+    "start_url": "/index.html",
+    "background_color": "white",
+    "theme_color": "#790005",
+    "display": "standalone"
+}

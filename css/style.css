@@ -1,0 +1,50 @@
+
+// White links against a dark background
+  .navbar-brand {
+    color: #f0f0f0;
+
+    @include hover-focus {
+      color: white;
+    }
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: #f0f0f0;
+
+      @include hover-focus {
+        color: white;
+      }
+
+      &.disabled {
+        color: silver;
+      }
+    }
+
+    .show > .nav-link,
+    .active > .nav-link,
+    .nav-link.show,
+    .nav-link.active {
+      color: white;
+    }
+  }
+
+  .navbar-toggler {
+    color: #f0f0f0;
+    border-color: white;
+  }
+
+  .navbar-toggler-icon {
+    background-image: transparent;
+  }
+
+  .navbar-text {
+    color: #f0f0f0;
+    a {
+      color: #f0f0f0;
+
+      @include hover-focus {
+        color: white;
+      }
+    }
+  }
