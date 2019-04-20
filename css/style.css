@@ -41,5 +41,6 @@
  }
  .mainhide {
    background: #f0f0f0;
-   
+   border-left: 1px solid #CED4DA;
+   border-right: 1px solid #CED4DA;
  }
