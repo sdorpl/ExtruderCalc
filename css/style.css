@@ -35,3 +35,11 @@
     color: #333333;
     background-color: rgba(255,255,255,.5);
 }
+
+ .vh-100{
+   min-height: 100vh;
+ }
+ .mainhide {
+   background: #f0f0f0;
+   
+ }
