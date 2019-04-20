@@ -1,7 +1,7 @@
 {
     "name": "Extruder Calc",
     "short_name": "Extruder Calc",
-	"version": "0.4.3",
+	"version": "0.4.4",
 	"description": "Prosty kalkulator pracy przy wytłaczarce profili PVC.",
     "icons": [{
       "src": "images/ico_192x192.png",
