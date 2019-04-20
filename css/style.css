@@ -8,17 +8,9 @@
     }
   }
 
-  .navbar-nav {
-    .nav-link {
+  .navbar-nav .nav-link {
       color: #f0f0f0;
 
-      @include hover-focus {
-        color: white;
-      }
-
-      &.disabled {
-        color: silver;
-      }
     }
 
     .show > .nav-link,
@@ -27,7 +19,7 @@
     .nav-link.active {
       color: white;
     }
-  }
+  
 
   .navbar-toggler {
     color: #f0f0f0;
