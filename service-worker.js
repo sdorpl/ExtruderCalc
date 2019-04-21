@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-var cacheName = 'excalc 0.5.0';
+include('scripts/app-info.js');
+var cacheName = 'excalc 0.5.0' +appVerNumber;
 var filesToCache = [
   '/',
   '/index.html',
