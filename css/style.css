@@ -44,3 +44,17 @@
    border-left: 1px solid #CED4DA;
    border-right: 1px solid #CED4DA;
  }
+
+ @media (max-width: 576px) {
+.navbar-collapse {
+    background:red;
+    position: fixed;
+    width: 75%;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    z-index: 1;
+
+}
+
+}
