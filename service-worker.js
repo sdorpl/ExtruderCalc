@@ -104,5 +104,5 @@ self.addEventListener('activate', event => {
    * service worker is not yet activated. The code below essentially lets
    * you activate the service worker faster.
    */
-  return self.clients.claim();
-});
+//  return self.clients.claim();
+//});
