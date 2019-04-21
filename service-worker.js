@@ -1,18 +1,7 @@
-// Copyright 2016 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// ExtruderCalc 
 
-var cacheName = 'excalc 0.5.0';
+const version = "0.5.1";
+const cacheName = 'excalc-${version}'';
 var filesToCache = [
   '/',
   '/index.html',
@@ -25,15 +14,28 @@ var filesToCache = [
   '/css/style.css'
 ];
 
-self.addEventListener('install', function(e) {
-  console.log('[ServiceWorker] Install');
+//install
+self.addEventListener('install', e => {
+  const timeStamp = Date.now();
+  console.log('[ExtruderCalc SW] Install');
   e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
+    caches.open(cacheName).then(cache => {
+      console.log('[ExtruderCalc SW] Send app files to Cache');
+      return cache.addAll(filesToCache)
+          .then(() => self.skipWaiting());
     })
   );
 });
+
+//self.addEventListener('install', function(e) {
+//  console.log('[ServiceWorker] Install');
+//  e.waitUntil(
+//    caches.open(cacheName).then(function(cache) {
+//      console.log('[ServiceWorker] Caching app shell');
+//      return cache.addAll(filesToCache);
+//    })
+//  );
+//});
 
 //
 
@@ -45,49 +47,51 @@ self.addEventListener('message', function (event) {
 
 //After install, fetch event is triggered for every page request
 
-self.addEventListener("fetch", function (event) {
+//self.addEventListener("fetch", function (event) {
+//	console.log("Request -->", event.request.url);
+//	//To tell browser to evaluate the result of event
+//	event.respondWith(
+//		caches.match(event.request)
+//    //To match current request with cached request it
+//		.then(function(response) {
+//			//If response found return it, else fetch again.
+//			return response || fetch(event.request);
+//		}).catch(function(error) {
+//			console.error("Error: ", error);
+//		})
+//  );
+//});
 
-	console.log("Request -->", event.request.url);
-
-
-	//To tell browser to evaluate the result of event
-
-	event.respondWith(
-
-		caches.match(event.request) //To match current request with cached request it
-
-		.then(function(response) {
-
-			//If response found return it, else fetch again.
-
-			return response || fetch(event.request);
-
-		})
-
-		.catch(function(error) {
-
-			console.error("Error: ", error);
-
-		})
-
-  );
-
+//fetch
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.open(cacheName)
+      .then(cache => cache.match(event.request, {ignoreSearch: true}))
+      .then(response => {
+      return response || fetch(event.request);
+    })
+  );
 });
 
 
+//activate
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+  console.log('[ExtruderCalc SW] Activate');
+});
 
-self.addEventListener('activate', function(e) {
-  console.log('[ServiceWorker] Activate');
-  e.waitUntil(
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
-        if (key !== cacheName) {
-          console.log('[ServiceWorker] Removing old cache', key);
-          return caches.delete(key);
-        }
-      }));
-    })
-  );
+//self.addEventListener('activate', function(e) {
+//  console.log('[ServiceWorker] Activate');
+//  e.waitUntil(
+//    caches.keys().then(function(keyList) {
+//      return Promise.all(keyList.map(function(key) {
+//        if (key !== cacheName) {
+//          console.log('[ServiceWorker] Removing old cache', key);
+//          return caches.delete(key);
+//        }
+//      }));
+//    })
+//  );
 
 
   /*
