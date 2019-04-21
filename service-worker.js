@@ -1,6 +1,6 @@
 // ExtruderCalc
 
-const version = "0.6.0";
+const version = "0.6.1";
 const cacheName = `excalc-${version}`;
 var filesToCache = [
   '/',
@@ -39,11 +39,11 @@ self.addEventListener('install', e => {
 
 //
 
-self.addEventListener('message', function (event) {
-  if (event.data.action === 'skipWaiting') {
-    self.skipWaiting();
-  }
-});
+//self.addEventListener('message', function (event) {
+//  if (event.data.action === 'skipWaiting') {
+//    self.skipWaiting();
+//  }
+//});
 
 
 //activate
