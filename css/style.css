@@ -44,3 +44,19 @@
    border-left: 1px solid #CED4DA;
    border-right: 1px solid #CED4DA;
  }
+
+
+/* introduction for dark mode */
+.form-control .dark {
+  color:blue;
+  background-color: purple;
+}
+.form-control .dark::placeholder {
+    color: red;
+    opacity: 1;
+}
+
+.form-control. dark:focus {
+    background-color: orange;
+    opacity: 1;
+}
