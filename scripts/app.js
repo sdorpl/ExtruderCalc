@@ -39,7 +39,7 @@
 
    if(app.theme == "dark") {
      document.body.classList.add("dark");
-     document.querySelector('.container').classList.add("dark");
+     document.querySelector('.mainhide').classList.add("dark");
      var formClass =  document.querySelector('.form-control');
      if(formClass) {
        formClass.classList.add("dark");
