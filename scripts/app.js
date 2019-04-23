@@ -22,7 +22,8 @@
     container: document.querySelector('.mainhide'),
     darkTheme: document.getElementById('setDarkTheme'),
     lightTheme: document.getElementById('setLightTheme'),
-    czas: document.getElementById('Czas')
+    czas: document.getElementById('Czas'),
+    theme: showCookie("Theme")
   };
 
 
@@ -32,6 +33,12 @@
    *
    ****************************************************************************/
    //Set dark
+   if(!app.theme) {
+     setCookie("Theme", "light");
+   }
+
+   alert(app.theme);
+
    app.darkTheme.addEventListener('click', function() {
      app.darkTheme.setAttribute('hidden', true);
      app.lightTheme.removeAttribute('hidden');
