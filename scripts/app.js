@@ -33,11 +33,15 @@
    ****************************************************************************/
    //Set dark
    app.darkTheme.addEventListener('click', function() {
+     app.darkTheme.setAttribute('hidden', true);
+     app.lightTheme.removeAttribute('hidden');
      alert('jestem czarny');
    });
 
    //Set light
    app.lightTheme.addEventListener('click', function() {
+     app.lightTheme.setAttribute('hidden', true);
+     app.darkTheme.removeAttribute('hidden');
      alert('jestem jasny');
    });
 
