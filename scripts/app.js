@@ -23,7 +23,8 @@
     darkTheme: document.getElementById('setDarkTheme'),
     lightTheme: document.getElementById('setLightTheme'),
     czas: document.getElementById('Czas'),
-    theme: showCookie("Theme")
+    theme: showCookie("Theme"),
+    version : getTXT('../version.txt')
   };
 
 
@@ -33,6 +34,7 @@
    *
    ****************************************************************************/
    //Set dark
+   alert(app.version);
    if(!app.theme) {
      setCookie("Theme", "light");
    }
