@@ -47,16 +47,24 @@
 
 
 /* introduction for dark mode */
-.form-control .dark {
+
+body.dark {
+  background-color: :#212121;
+  color: #f0f0f0;
+}
+.container.dark {
+  background-color: #000;
+}
+.form-control.dark {
   color:blue;
   background-color: purple;
 }
-.form-control .dark::placeholder {
+.form-control.dark::placeholder {
     color: red;
     opacity: 1;
 }
 
-.form-control. dark:focus {
+.form-control.dark:focus {
     background-color: orange;
     opacity: 1;
 }
