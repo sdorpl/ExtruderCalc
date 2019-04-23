@@ -45,7 +45,7 @@
      document.body.classList.add("dark");
      document.querySelector('.mainhide').classList.add("dark");
      document.querySelector('.navbar-custom').classList.add("dark");
-     document.querySelector("meta[name=theme-color]").setAttribute("content", "#242424");
+     document.querySelector("meta[name=theme-color]").setAttribute("content", "#000000");
      var formClass =  document.getElementsByClassName('form-control');
      if(formClass) {
        for (let i = 0; i < formClass.length; i++) {
