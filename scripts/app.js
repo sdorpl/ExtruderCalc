@@ -35,14 +35,14 @@
    app.darkTheme.addEventListener('click', function() {
      app.darkTheme.setAttribute('hidden', true);
      app.lightTheme.removeAttribute('hidden');
-     alert('jestem czarny');
+     setCookie("Theme", "dark");
    });
 
    //Set light
    app.lightTheme.addEventListener('click', function() {
      app.lightTheme.setAttribute('hidden', true);
      app.darkTheme.removeAttribute('hidden');
-     alert('jestem jasny');
+     setCookie("Theme", "light");
    });
 
    if(app.czas) {
