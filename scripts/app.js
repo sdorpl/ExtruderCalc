@@ -20,6 +20,8 @@
     isLoading: true,
     spinner: document.querySelector('.loader'),
     container: document.querySelector('.mainhide'),
+    darkTheme: document.getElementById('setDarkTheme'),
+    lightTheme: document.getElementById('setLightTheme'),
     czas: document.getElementById('Czas')
   };
 
@@ -29,15 +31,26 @@
    * Event listeners for UI elements
    *
    ****************************************************************************/
-   if(app.czas) {
-   document.getElementById('Czas').addEventListener('change', function() {
-     // // DEBUG: finiuje zmienne i pobieram dane
-    var inputWymiar = document.getElementById('inputWymiar').value;
-    var inputSztuk = document.getElementById('inputSztuk').value;
-    var inputSpeed = document.getElementById('inputSpeed').value;
-    var inputPoIle = document.getElementById('inputPoIle').value;
-    app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+   //Set dark
+   app.darkTheme.addEventListener('click', function() {
+     alert('jestem czarny');
    });
+
+   //Set light
+   app.lightTheme.addEventListener('click', function() {
+     alert('jestem jasny');
+   });
+
+   if(app.czas) {
+     app.czas.addEventListener('change', function() {
+       // // DEBUG: finiuje zmienne i pobieram dane
+       var inputWymiar = document.getElementById('inputWymiar').value;
+       var inputSztuk = document.getElementById('inputSztuk').value;
+       var inputSpeed = document.getElementById('inputSpeed').value;
+       var inputPoIle = document.getElementById('inputPoIle').value;
+
+       app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+     });
     }
 
    app.Licz = function(wymiar, sztuk, speed, poile) {
