@@ -11,7 +11,7 @@
       "sizes": "512x512",
       "type": "image/png"
     }],
-    "start_url": "/",
+    "start_url": "/?utm source=pwaapp",
     "background_color": "white",
     "theme_color": "#790005",
     "display": "standalone"
