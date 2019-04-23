@@ -49,16 +49,21 @@
 /* introduction for dark mode */
 
 body.dark {
-  background-color: :#212121;
+  background-color: #212121;
   color: #f0f0f0;
 }
+
 .container.dark {
   background-color: #000;
+  border-left: 1px solid #262626;
+  border-right: 1px solid #262626;
 }
+
 .form-control.dark {
   color:blue;
   background-color: purple;
 }
+
 .form-control.dark::placeholder {
     color: red;
     opacity: 1;
