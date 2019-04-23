@@ -53,6 +53,10 @@ body.dark {
   color: #f0f0f0;
 }
 
+.navbar-custom.dark {
+    background-color: #303030;
+}
+
 .mainhide.dark {
   background-color: #000;
   border-left: 1px solid #262626;
@@ -60,16 +64,17 @@ body.dark {
 }
 
 .form-control.dark {
-  color:blue;
-  background-color: purple;
+  color:#f0f0f0;
+  background-color: #212121;
+  border-color:#383838;
 }
 
 .form-control.dark::placeholder {
-    color: red;
+    color: #bfbfbf;
     opacity: 1;
 }
 
 .form-control.dark:focus {
-    background-color: orange;
+    background-color: #303030;
     opacity: 1;
 }
