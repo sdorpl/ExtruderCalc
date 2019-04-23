@@ -37,7 +37,14 @@
      setCookie("Theme", "light");
    }
 
-   alert(app.theme);
+   if(app.theme == "dark") {
+     document.body.classList.add("dark");
+     document.querySelector('.container').classList.add("dark");
+     var formClass =  document.querySelector('.form-control');
+     if(formClass) {
+       formClass.classList.add("dark");
+     }
+   }
 
    app.darkTheme.addEventListener('click', function() {
      app.darkTheme.setAttribute('hidden', true);
