@@ -52,13 +52,13 @@
 
    app.darkTheme.addEventListener('click', function() {
      setCookie("Theme", "dark");
+     document.location.reload(true);
    });
 
    //Set light
    app.lightTheme.addEventListener('click', function() {
-     app.lightTheme.setAttribute('hidden', true);
-     app.darkTheme.removeAttribute('hidden');
      setCookie("Theme", "light");
+     document.location.reload(true);
    });
 
    if(app.czas) {
