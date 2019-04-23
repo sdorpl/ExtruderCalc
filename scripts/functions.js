@@ -42,6 +42,6 @@ showCookie = function(name) {
     fetch(file)
     .then(response => response.text())
     .then((data) => {
-      return file
+      return data
     })
   }
