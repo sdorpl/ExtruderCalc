@@ -37,11 +37,3 @@ showCookie = function(name) {
           }
       }
   }
-
-  getTXT = function(file) {
-    fetch(file)
-    .then(response => response.text())
-    .then((data) => {
-      return data
-    })
-  }
