@@ -19,7 +19,8 @@
   var app = {
     isLoading: true,
     spinner: document.querySelector('.loader'),
-    container: document.querySelector('.mainhide')
+    container: document.querySelector('.mainhide'),
+    czas: document.getElementById('Czas')
   };
 
 
@@ -28,6 +29,7 @@
    * Event listeners for UI elements
    *
    ****************************************************************************/
+   if(app.czas) {
    document.getElementById('Czas').addEventListener('change', function() {
      // // DEBUG: finiuje zmienne i pobieram dane
     var inputWymiar = document.getElementById('inputWymiar').value;
@@ -36,6 +38,7 @@
     var inputPoIle = document.getElementById('inputPoIle').value;
     app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
    });
+    }
 
    app.Licz = function(wymiar, sztuk, speed, poile) {
      //Zmienne komunikatów
