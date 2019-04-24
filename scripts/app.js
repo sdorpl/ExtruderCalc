@@ -24,7 +24,7 @@
     lightTheme: document.getElementById('setLightTheme'),
     czas: document.getElementById('Czas'),
     theme: showCookie("Theme"),
-    version : "0.6.20"
+    version : "0.6.21"
   };
 
 
@@ -36,7 +36,7 @@
    //Set dark
    document.getElementById('appver').innerHTML= app.version;
    if(!app.theme) {
-     setCookie("Theme", "light");
+     setCookie("Theme", "light", 3650);
    }
 
    if(app.theme == "dark") {
@@ -55,13 +55,13 @@
    }
 
    app.darkTheme.addEventListener('click', function() {
-     setCookie("Theme", "dark");
+     setCookie("Theme", "dark", 3650);
      document.location.reload(true);
    });
 
    //Set light
    app.lightTheme.addEventListener('click', function() {
-     setCookie("Theme", "light");
+     setCookie("Theme", "light", 3650);
      document.location.reload(true);
    });
 
@@ -95,8 +95,8 @@
      if (czasIsArray == 1) {
        var wynikCzas = czasArray[0] + ' Godzin 0 Minut';
      } else {
-         var minuty = czasArray[1].substr(0, 2) / 100 * 60;
-         var wynikCzas = czasArray[0] + ' Godzin ' + minuty.toString().substr(0, 2) + ' Minut';
+         var minuty = Math.decimal(czasArray[1].substr(0, 2) / 100 * 60, 0);
+         var wynikCzas = czasArray[0] + ' Godzin ' + minuty.toString() + ' Minut';
     }
 
     //Obliczam kartony
@@ -109,8 +109,8 @@
     if (kartonsIsArray == 1) {
       var wynikKartons = kartonsArray[0] + '';
     } else {
-         var sztuki = parseFloat('0.' + kartonsArray[1]) * poile;
-         var wynikKartons = kartonsArray[0] + ' po ' + poile + ' sztuk i reszta ' + sztuki.toString().substr(0, 2) + ' sztuk';
+         var sztuki = Math.decimal(parseFloat('0.' + kartonsArray[1]) * poile, 0);
+         var wynikKartons = kartonsArray[0] + ' po ' + poile + ' sztuk i reszta ' + sztuki.toString() + ' sztuk';
    }
 
     //Jezeli wymiar i speed null
