@@ -43,3 +43,33 @@ Math.decimal = function(n, k) {
     n = Math.round(Math.round(n*factor)/10);
     return n/(factor/10);
 }
+
+darkTheme = function() {
+  document.getElementById('setDarkTheme').setAttribute('hidden', true);
+  document.getElementById('setLightTheme').removeAttribute('hidden');
+  document.body.classList.add("dark");
+  document.querySelector('.mainhide').classList.add("dark");
+  document.querySelector('.navbar-custom').classList.add("dark");
+  document.querySelector("meta[name=theme-color]").setAttribute("content", "#000000");
+  var formClass =  document.getElementsByClassName('form-control');
+  if(formClass) {
+    for (let i = 0; i < formClass.length; i++) {
+     formClass[i].classList.add("dark");
+    }
+  }
+}
+
+lightTheme = function() {
+  document.getElementById('setDarkTheme').removeAttribute('hidden');
+  document.getElementById('setLightTheme').setAttribute('hidden', true);
+  document.body.classList.remove("dark");
+  document.querySelector('.mainhide').classList.remove("dark");
+  document.querySelector('.navbar-custom').classList.remove("dark");
+  document.querySelector("meta[name=theme-color]").setAttribute("content", "#000000");
+  var formClass =  document.getElementsByClassName('form-control');
+  if(formClass) {
+    for (let i = 0; i < formClass.length; i++) {
+     formClass[i].classList.remove("dark");
+    }
+  }
+}

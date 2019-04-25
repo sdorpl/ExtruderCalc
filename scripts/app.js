@@ -24,7 +24,7 @@
     lightTheme: document.getElementById('setLightTheme'),
     czas: document.getElementById('Czas'),
     theme: showCookie("Theme"),
-    version : "0.6.22"
+    version : "0.6.23"
   };
 
 
@@ -40,29 +40,18 @@
    }
 
    if(app.theme == "dark") {
-     app.darkTheme.setAttribute('hidden', true);
-     app.lightTheme.removeAttribute('hidden');
-     document.body.classList.add("dark");
-     document.querySelector('.mainhide').classList.add("dark");
-     document.querySelector('.navbar-custom').classList.add("dark");
-     document.querySelector("meta[name=theme-color]").setAttribute("content", "#000000");
-     var formClass =  document.getElementsByClassName('form-control');
-     if(formClass) {
-       for (let i = 0; i < formClass.length; i++) {
-        formClass[i].classList.add("dark");
-       }
-     }
+     darkTheme();
    }
 
    app.darkTheme.addEventListener('click', function() {
      setCookie("Theme", "dark", 3650);
-     document.location.reload(true);
+     darkTheme();
    });
 
    //Set light
    app.lightTheme.addEventListener('click', function() {
      setCookie("Theme", "light", 3650);
-     document.location.reload(true);
+     lightTheme();
    });
 
    if(app.czas) {
