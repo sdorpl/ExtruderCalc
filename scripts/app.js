@@ -24,7 +24,7 @@
     lightTheme: document.getElementById('setLightTheme'),
     czas: document.getElementById('Czas'),
     theme: showCookie("Theme"),
-    version : "0.6.23"
+    version : "0.6.24"
   };
 
 

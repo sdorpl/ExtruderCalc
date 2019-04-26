@@ -1,6 +1,6 @@
 // ExtruderCalc
 
-const version = "0.6.23";
+const version = "0.6.24";
 const cacheName = `excalc-${version}`;
 var filesToCache = [
   '/',
