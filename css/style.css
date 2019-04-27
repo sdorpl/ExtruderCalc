@@ -88,6 +88,9 @@ body.dark {
     opacity: 1;
 }
 
+.saveDialogContent.dark {
+  background-color: #3c3b3b;
+}
 
 .loader {
   left: 50%;
@@ -147,3 +150,52 @@ body.dark {
                 stroke-dashoffset: -65.973;
                 -webkit-transform: rotate(90deg);
                         transform: rotate(90deg); } }
+
+.saveDialogContainer {
+  background: rgba(0, 0, 0, 0.57);
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+pointer-events: none;
+will-change: opacity;
+-webkit-transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+}
+
+.saveDialogContainer--visible {
+  opacity: 1;
+  pointer-events: auto; }
+
+.saveDialogContent {
+  padding: 15px;
+  background: #F0f0f0;
+border-radius: 15px;
+box-shadow: 0 0 14px rgba(0, 0, 0, 0.24), 0 14px 28px rgba(0, 0, 0, 0.48);
+min-width: 320px;
+position: absolute;
+left: 50%;
+top: 50%;
+-webkit-transform: translate(-50%, -50%) translateY(30px);
+        transform: translate(-50%, -50%) translateY(30px);
+-webkit-transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+transition: -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+transition: transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s, -webkit-transform 0.333s cubic-bezier(0, 0, 0.21, 1) 0.05s;
+}
+
+
+.saveDialogControl {
+  position: absolute;
+  right: 0;
+  top: -35px;
+  color: #E81123;
+  font-size: 25px;
+  transition: color 150ms linear;
+}
+
+.saveDialogControl:hover {
+  color: #FF142B;
+}

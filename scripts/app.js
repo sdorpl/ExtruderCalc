@@ -22,9 +22,11 @@
     container: document.querySelector('.mainhide'),
     darkTheme: document.getElementById('setDarkTheme'),
     lightTheme: document.getElementById('setLightTheme'),
+    saveDialogButton: document.getElementById('showSaveDialog'),
+    saveDialog: document.querySelector('.saveDialogContainer'),
     czas: document.getElementById('Czas'),
     theme: showCookie("Theme"),
-    version : "0.6.24"
+    version: "0.6.25"
   };
 
 
@@ -33,59 +35,80 @@
    * Event listeners for UI elements
    *
    ****************************************************************************/
-   //Set dark
-   document.getElementById('appver').innerHTML= app.version;
-   if(!app.theme) {
-     setCookie("Theme", "light", 3650);
-   }
+  //Set dark
+  document.getElementById('appver').innerHTML = app.version;
+  if (!app.theme) {
+    setCookie("Theme", "light", 3650);
+  }
 
-   if(app.theme == "dark") {
-     darkTheme();
-   }
+  if (app.theme == "dark") {
+    darkTheme();
+  }
 
-   app.darkTheme.addEventListener('click', function() {
-     setCookie("Theme", "dark", 3650);
-     darkTheme();
-   });
+  app.darkTheme.addEventListener('click', function() {
+    setCookie("Theme", "dark", 3650);
+    darkTheme();
+  });
 
-   //Set light
-   app.lightTheme.addEventListener('click', function() {
-     setCookie("Theme", "light", 3650);
-     lightTheme();
-   });
+  //Set light
+  app.lightTheme.addEventListener('click', function() {
+    setCookie("Theme", "light", 3650);
+    lightTheme();
+  });
 
-   if(app.czas) {
-     app.czas.addEventListener('change', function() {
-       // // DEBUG: finiuje zmienne i pobieram dane
-       var inputWymiar = document.getElementById('inputWymiar').value;
-       var inputSztuk = document.getElementById('inputSztuk').value;
-       var inputSpeed = document.getElementById('inputSpeed').value;
-       var inputPoIle = document.getElementById('inputPoIle').value;
+  //only Index
+  if (app.saveDialogButton) {
+    //Show saveDialog
+    document.getElementById('showSaveDialog').addEventListener('click', function() {
+      app.toggleSaveDialog(true);
+    });
 
-       app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
-     });
+    //Hide saveDialog
+    document.getElementById('hideSaveDialog').addEventListener('click', function() {
+      app.toggleSaveDialog(false);
+    });
+  }
+
+  app.toggleSaveDialog = function(visible) {
+    if (visible) {
+      app.saveDialog.classList.add('saveDialogContainer--visible');
+    } else {
+      app.saveDialog.classList.remove('saveDialogContainer--visible');
     }
+  };
 
-   app.Licz = function(wymiar, sztuk, speed, poile) {
-     //Zmienne komunikatów
-     var infoBox = document.getElementById('info');
-     var wynikBox = document.getElementById('wynik_row');
-     var wynikValue = document.getElementById('wynik');
-     var kartonsBox = document.getElementById('kartony_row');
-     var kartonsValue = document.getElementById('kartony');
+  if (app.czas) {
+    app.czas.addEventListener('change', function() {
+      // // DEBUG: finiuje zmienne i pobieram dane
+      var inputWymiar = document.getElementById('inputWymiar').value;
+      var inputSztuk = document.getElementById('inputSztuk').value;
+      var inputSpeed = document.getElementById('inputSpeed').value;
+      var inputPoIle = document.getElementById('inputPoIle').value;
 
-     //Obliczam czas
-     var czas = (wymiar / 1000) * (sztuk / speed) / 60;
-     //Konwertuje czas do tablicy
-     var czasArray = czas.toString().split('.');
-     //Sprawdzam ilosc rekordow
-     var czasIsArray = czasArray.length;
-     //Wykonuje sprawdzenie czy tablica
-     if (czasIsArray == 1) {
-       var wynikCzas = czasArray[0] + ' Godzin 0 Minut';
-     } else {
-         var minuty = Math.decimal(czasArray[1].substr(0, 2) / 100 * 60, 0);
-         var wynikCzas = czasArray[0] + ' Godzin ' + minuty.toString() + ' Minut';
+      app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+    });
+  }
+
+  app.Licz = function(wymiar, sztuk, speed, poile) {
+    //Zmienne komunikatów
+    var infoBox = document.getElementById('info');
+    var wynikBox = document.getElementById('wynik_row');
+    var wynikValue = document.getElementById('wynik');
+    var kartonsBox = document.getElementById('kartony_row');
+    var kartonsValue = document.getElementById('kartony');
+
+    //Obliczam czas
+    var czas = (wymiar / 1000) * (sztuk / speed) / 60;
+    //Konwertuje czas do tablicy
+    var czasArray = czas.toString().split('.');
+    //Sprawdzam ilosc rekordow
+    var czasIsArray = czasArray.length;
+    //Wykonuje sprawdzenie czy tablica
+    if (czasIsArray == 1) {
+      var wynikCzas = czasArray[0] + ' Godzin 0 Minut';
+    } else {
+      var minuty = Math.decimal(czasArray[1].substr(0, 2) / 100 * 60, 0);
+      var wynikCzas = czasArray[0] + ' Godzin ' + minuty.toString() + ' Minut';
     }
 
     //Obliczam kartony
@@ -98,69 +121,72 @@
     if (kartonsIsArray == 1) {
       var wynikKartons = kartonsArray[0] + '';
     } else {
-         var sztuki = Math.decimal(parseFloat('0.' + kartonsArray[1]) * poile, 0);
-         var wynikKartons = kartonsArray[0] + ' po ' + poile + ' sztuk i reszta ' + sztuki.toString() + ' sztuk';
-   }
+      var sztuki = Math.decimal(parseFloat('0.' + kartonsArray[1]) * poile, 0);
+      var wynikKartons = kartonsArray[0] + ' po ' + poile + ' sztuk i reszta ' + sztuki.toString() + ' sztuk';
+    }
 
     //Jezeli wymiar i speed null
-    if(!wymiar && !speed && !sztuk) {
-      infoBox.innerHTML="<strong>Uwaga!</strong> Wprowadź dane do formularza!";
+    if (!wymiar && !speed && !sztuk) {
+      infoBox.innerHTML = "<strong>Uwaga!</strong> Wprowadź dane do formularza!";
     } else {
-      infoBox.innerHTML="<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-      if(isNaN(czasArray[0]) || isNaN(kartons)) {
+      infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
+      if (isNaN(czasArray[0]) || isNaN(kartons)) {
         wynikBox.setAttribute('hidden', true);
         infoBox.removeAttribute('hidden');
-        infoBox.innerHTML="<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
+        infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
       } else {
-          infoBox.removeAttribute('hidden');
-          infoBox.innerHTML="<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
+        infoBox.removeAttribute('hidden');
+        infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
 
-        if(wynikCzas != 0 && wynikCzas != Infinity ) {
+        if (wynikCzas != 0 && wynikCzas != Infinity) {
           infoBox.setAttribute('hidden', true);
           wynikBox.removeAttribute('hidden');
-          wynikValue.innerHTML="Szacowany czas realizacji: <strong>" + wynikCzas + "</strong>";
+          wynikValue.innerHTML = "Szacowany czas realizacji: <strong>" + wynikCzas + "</strong>";
         } else {
           wynikBox.setAttribute('hidden', true);
-					infoBox.innerHTML="<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
+          infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
         }
 
-        if(wynikKartons != 0 && wynikKartons != Infinity ) {
+        if (wynikKartons != 0 && wynikKartons != Infinity) {
           infoBox.setAttribute('hidden', true);
           kartonsBox.removeAttribute('hidden');
-          kartonsValue.innerHTML="Ilość kartonów do zrobienia: : <strong>" + wynikKartons + "</strong>";
+          kartonsValue.innerHTML = "Ilość kartonów do zrobienia: : <strong>" + wynikKartons + "</strong>";
         } else {
           kartonsBox.setAttribute('hidden', true);
-          infoBox.innerHTML="<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
+          infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
         }
 
       }
     }
 
 
-   };
+  };
 
 
   // TODO add service worker code here
-//  if ('serviceWorker' in navigator) {
+  //  if ('serviceWorker' in navigator) {
   //  navigator.serviceWorker
-    //         .register('./service-worker.js')
-      //       .then(function() { console.log('Service Worker Registered'); });
-        //     if (app.isLoading) {
-          //   app.spinner.setAttribute('hidden', true);
-            // app.container.removeAttribute('hidden');
-             //app.isLoading = false;
-           //}
+  //         .register('./service-worker.js')
+  //       .then(function() { console.log('Service Worker Registered'); });
+  //     if (app.isLoading) {
+  //   app.spinner.setAttribute('hidden', true);
+  // app.container.removeAttribute('hidden');
+  //app.isLoading = false;
+  //}
   //}
 
 
   let newWorker;
+
   function showUpdateBar() {
     let snackbar = document.getElementById('snackbar');
     snackbar.removeAttribute('hidden');
   }
   // The click event on the pop up notification
-  document.getElementById('reload').addEventListener('click', function(){
-    newWorker.postMessage({ action: 'skipWaiting' });
+  document.getElementById('reload').addEventListener('click', function() {
+    newWorker.postMessage({
+      action: 'skipWaiting'
+    });
   });
 
   if ('serviceWorker' in navigator) {
@@ -183,15 +209,15 @@
       });
     });
     let refreshing;
-    navigator.serviceWorker.addEventListener('controllerchange', function () {
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
       if (refreshing) return;
       window.location.reload();
       refreshing = true;
     });
   }
-       if (app.isLoading) {
-       app.spinner.setAttribute('hidden', true);
-      app.container.removeAttribute('hidden');
-      app.isLoading = false;
-     }
+  if (app.isLoading) {
+    app.spinner.setAttribute('hidden', true);
+    app.container.removeAttribute('hidden');
+    app.isLoading = false;
+  }
 })();

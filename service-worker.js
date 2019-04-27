@@ -1,6 +1,6 @@
 // ExtruderCalc
 
-const version = "0.6.24";
+const version = "0.6.25";
 const cacheName = `excalc-${version}`;
 var filesToCache = [
   '/',
@@ -22,7 +22,7 @@ self.addEventListener('install', e => {
     caches.open(cacheName).then(cache => {
       console.log('[ExtruderCalc SW] Send app files to Cache');
       return cache.addAll(filesToCache)
-          .then(() => self.skipWaiting());
+        .then(() => self.skipWaiting());
     })
   );
 });
@@ -90,8 +90,10 @@ self.addEventListener('activate', function(e) {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.open(cacheName)
-      .then(cache => cache.match(event.request, {ignoreSearch: true}))
-      .then(response => {
+    .then(cache => cache.match(event.request, {
+      ignoreSearch: true
+    }))
+    .then(response => {
       return response || fetch(event.request);
     })
   );
@@ -111,15 +113,15 @@ self.addEventListener('fetch', event => {
 //  );
 
 
-  /*
-   * Fixes a corner case in which the app wasn't returning the latest data.
-   * You can reproduce the corner case by commenting out the line below and
-   * then doing the following steps: 1) load app for first time so that the
-   * initial New York City data is shown 2) press the refresh button on the
-   * app 3) go offline 4) reload the app. You expect to see the newer NYC
-   * data, but you actually see the initial data. This happens because the
-   * service worker is not yet activated. The code below essentially lets
-   * you activate the service worker faster.
-   */
+/*
+ * Fixes a corner case in which the app wasn't returning the latest data.
+ * You can reproduce the corner case by commenting out the line below and
+ * then doing the following steps: 1) load app for first time so that the
+ * initial New York City data is shown 2) press the refresh button on the
+ * app 3) go offline 4) reload the app. You expect to see the newer NYC
+ * data, but you actually see the initial data. This happens because the
+ * service worker is not yet activated. The code below essentially lets
+ * you activate the service worker faster.
+ */
 //  return self.clients.claim();
 //});
