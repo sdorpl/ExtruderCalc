@@ -1,3 +1,6 @@
+localforage.config({
+    name: 'Hipster PDA App'
+});
 setCookie = function(name, val, days, path, domain, secure) {
   if (navigator.cookieEnabled) { //czy ciasteczka sÄ… wÅ‚Ä…czone
     const cookieName = encodeURIComponent(name);
@@ -84,4 +87,28 @@ lightTheme = function() {
       formClass[i].classList.remove("dark");
     }
   }
+}
+
+saveItems = function(nazwa, adnot, wymiar, poile, sztuk, predkosc, date, item) {
+   var items = {
+     "nazwa": nazwa,
+     "adnotacja": adnot,
+     "wymiar": wymiar,
+     "poile": poile,
+     "sztuk" : sztuk,
+     "predkosc": predkosc,
+     "data": date,
+     item
+
+   };
+
+   localforage.setItem(nazwa, items).then(function (value) {
+       // Do other things once the value has been saved.
+       console.log(value);
+   }).catch(function(err) {
+       // This code runs if there were any errors
+       console.log(err);
+   });
+
+  console.log(items);
 }

@@ -29,9 +29,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="ExtruderCalc">
+  <meta name="apple-mobile-web-app-title" content="ExCALC">
   <link rel="apple-touch-icon" href="/images/ico_192x192.png">
-  <title>ExtruderCalc</title>
+  <title>ExtruderCalc - O aplikacji</title>
   <link rel="manifest" href="/manifest.json">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -46,10 +46,13 @@
 
 <body>
   <header>
+    <!--
+  Custom nvbar color
+  -->
     <nav class="navbar navbar-expand-sm navbar-custom">
       <div class="container">
         <a class="navbar-brand" href="/">ExtruderCalc <span id="appver" style="font-size: 9px"></span></a>
-        <button id="showMenuLeft" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom" name="Rozwin menu">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom" name="Rozwin menu">
           <i class="fa fa-bars fa-lg py-1 text-white"></i>
         </button>
         <div class="navbar-collapse collapse" id="navbarCustom">
@@ -66,89 +69,33 @@
       </div>
     </nav>
   </header>
-  <main role="main" class="container mainhide vh-100" hidden>
-    <br />
 
+  <main role="main" class="container mainhide  vh-100" hidden>
+    <br />
     <div id="snackbar" hidden>
       <div class="alert alert-warning" role="alert">
         Nowa wersja dostępna! Kliknij <a href="#" id="reload"><strong>tutaj</strong></a> aby zaktualizować.
       </div>
     </div>
 
-    <div id="info" class="alert alert-danger">
-      <strong>Uwaga!</strong> Wprowadź dane do formularza aby obliczyć czas realizacji zamówienia i ilość kartonów!
-    </div>
-
-    <div id="wynik_row" class="alert alert-success" hidden>
-      <span id="wynik"></span>
-    </div>
-
-    <div id="kartony_row" class="alert alert-success" hidden>
-      <span id="kartony"></span>
-    </div>
-
     <div class="row">
       <div class="col-lg">
-        <form id="indexForm" name="indexForm">
-          <div class="form-group row">
-            <label for="inputWymiar" class="col-sm-2 col-form-label">Wymiar (w milimetrach)*</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputWymiar" placeholder="Wymiar">
-            </div>
-          </div>
+        <center>
+          <i style="font-size: 80pt; color: #388e3c;" class="fas fa-code"></i><br>
+          Oblicz szacowany czas realizacji zamówienia i liczbę kartonów. <br>
+          Twoja praca może stać się prostsza i przyjemniejsza - to tylko dwa klikniecia!<br>
+        </center>
+        <script>
 
-          <div class="form-group row">
-            <label for="inputSpeed" class="col-sm-2 col-form-label">Prędkosć odciągu (w metrach na minutę)*</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputSpeed" placeholder="Prędkość">
-            </div>
-          </div>
+        localforage.keys().then(function(keys) {
+  // An array of all the key names.
+  console.log(keys);
+}).catch(function(err) {
+  // This code runs if there were any errors
+  console.log(err);
+});
 
-          <div class="form-group row">
-            <label for="inputSztuk" class="col-sm-2 col-form-label">Ilość do zrobienia (sztuk)*</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputSztuk" placeholder="Sztuk">
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="inputPoIle" class="col-sm-2 col-form-label">Pakowane po (sztuk)</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="inputPoIle" placeholder="Po ile">
-            </div>
-          </div>
-        </form>
-        <button id="showSaveDialog" class="btn btn-success" role="button" style="position: fixed; bottom: 35px; right: 35px; font-size: 35px;">
-          <i class="fas fa-save"></i>
-        </button>
-        <div class="saveDialogContainer" style="">
-
-          <div class="saveDialogContent">
-
-            <div class="saveDialogControl">
-              <i id="hideSaveDialog" class="fas fa-times"></i>
-            </div>
-
-            <form id="Tytul" name="Tytul">
-              <div class="form-group row">
-                <label for="inputWymiar" class="col-sm-2 col-form-label">Zapisz jako</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputName" placeholder="Tytuł">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="inputWymiar" class="col-sm-2 col-form-label">Adnotacje</label>
-                <div class="col-sm-10">
-                  <textarea class="form-control" id="inputAdnot" rows="3" placeholder="Jakaś adnotacja..."></textarea>
-                </div>
-              </div>
-
-            </form>
-            <button role="button" class="btn btn-primary" id="saveInputBase">Zapisz</button>
-            <p style="color: red;">Funkcja jeszcze nie aktywna!</p>
-          </div>
-        </div>
+        </script>
       </div>
     </div>
   </main>

@@ -24,7 +24,7 @@
     lightTheme: document.getElementById('setLightTheme'),
     saveDialogButton: document.getElementById('showSaveDialog'),
     saveDialog: document.querySelector('.saveDialogContainer'),
-    czas: document.getElementById('Czas'),
+    indexForm: document.getElementById('indexForm'),
     theme: showCookie("Theme"),
     version: "0.6.25"
   };
@@ -56,36 +56,41 @@
     lightTheme();
   });
 
-  //only Index
-  if (app.saveDialogButton) {
-    //Show saveDialog
-    document.getElementById('showSaveDialog').addEventListener('click', function() {
-      app.toggleSaveDialog(true);
-    });
-
-    //Hide saveDialog
-    document.getElementById('hideSaveDialog').addEventListener('click', function() {
-      app.toggleSaveDialog(false);
-    });
-  }
-
-  app.toggleSaveDialog = function(visible) {
-    if (visible) {
-      app.saveDialog.classList.add('saveDialogContainer--visible');
-    } else {
-      app.saveDialog.classList.remove('saveDialogContainer--visible');
-    }
-  };
-
-  if (app.czas) {
-    app.czas.addEventListener('change', function() {
-      // // DEBUG: finiuje zmienne i pobieram dane
+  if (app.indexForm) {
+    //Obliczam
+    app.indexForm.addEventListener('change', function() {
       var inputWymiar = document.getElementById('inputWymiar').value;
       var inputSztuk = document.getElementById('inputSztuk').value;
       var inputSpeed = document.getElementById('inputSpeed').value;
       var inputPoIle = document.getElementById('inputPoIle').value;
-
       app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+    });
+    var inputName = document.getElementById('inputName').value;
+    var inputAdnot = document.getElementById('inputAdnot').value;
+    var showButton = document.getElementById('showSaveDialog');
+    var hideButton = document.getElementById('hideSaveDialog')
+    //Show saveDialog
+    showButton.addEventListener('click', function() {
+      app.toggleSaveDialog(true);
+    });
+
+    //Hide saveDialog
+    hideButton.addEventListener('click', function() {
+      app.toggleSaveDialog(false);
+    });
+
+
+    document.getElementById('saveInputBase').addEventListener('click', function() {
+      var inputWymiar = document.getElementById('inputWymiar').value;
+      var inputSztuk = document.getElementById('inputSztuk').value;
+      var inputSpeed = document.getElementById('inputSpeed').value;
+      var inputPoIle = document.getElementById('inputPoIle').value;
+      var inputName = document.getElementById('inputName').value;
+      var inputAdnot = document.getElementById('inputAdnot').value;
+      var data = new Date();
+      var licz = app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+      saveItems(inputName, inputAdnot, inputWymiar, inputPoIle, inputSztuk, inputSpeed, data, licz);
+
     });
   }
 
@@ -96,6 +101,10 @@
     var wynikValue = document.getElementById('wynik');
     var kartonsBox = document.getElementById('kartony_row');
     var kartonsValue = document.getElementById('kartony');
+
+    var wynikCzas = '';
+    var wynikKartons = '';
+
 
     //Obliczam czas
     var czas = (wymiar / 1000) * (sztuk / speed) / 60;
@@ -158,7 +167,23 @@
 
       }
     }
+    var ret = {
+      "kartony": wynikKartons,
+      "czas": wynikCzas,
+    };
+    return ret;
 
+  };
+
+  app.toggleSaveDialog = function(visible) {
+    if (visible) {
+      app.saveDialog.classList.add('saveDialogContainer--visible');
+    } else {
+      app.saveDialog.classList.remove('saveDialogContainer--visible');
+    }
+  };
+
+  app.saveFormItems = function(name, ) {
 
   };
 
