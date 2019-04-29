@@ -118,8 +118,10 @@ makeDialog = function(content, name) {
   dialogContainer.className = 'saveDialogContainer';
   //ustalam miejsce dla Dialog
   var dialogFrame = document.getElementById('dialogT');
+  //wstawiam dialogContainer do dialogFrame div
   dialogFrame.appendChild(dialogContainer);
 
+  //Tworze
   //var znacznik2 = document.createElement('input');
   //znacznik2.setAttribute('type', 'text');
   //znacznik2.setAttribute('id', 'item'+newItemNameDigit);
@@ -127,4 +129,34 @@ makeDialog = function(content, name) {
   //znacznik2.className = 'form-control';
   //var kontener2 = document.getElementById('item'+newItemNameDigit+'group');
   //kontener2.appendChild(znacznik2);
+}
+
+
+// Service Worker Initialize
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then(reg => {
+    reg.addEventListener('updatefound', () => {
+      // A wild service worker has appeared in reg.installing!
+      newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        // Has network.state changed?
+        switch (newWorker.state) {
+          case 'installed':
+            if (navigator.serviceWorker.controller) {
+              // new update available
+              showUpdateBar();
+            }
+            // No update available
+            break;
+        }
+      });
+    });
+  });
+  let refreshing;
+  navigator.serviceWorker.addEventListener('controllerchange', function() {
+    if (refreshing) return;
+    window.location.reload();
+    refreshing = true;
+  });
 }
