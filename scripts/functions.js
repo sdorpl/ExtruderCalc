@@ -1,6 +1,4 @@
-localforage.config({
-    name: 'Hipster PDA App'
-});
+
 setCookie = function(name, val, days, path, domain, secure) {
   if (navigator.cookieEnabled) { //czy ciasteczka sÄ… wÅ‚Ä…czone
     const cookieName = encodeURIComponent(name);
@@ -111,4 +109,22 @@ saveItems = function(nazwa, adnot, wymiar, poile, sztuk, predkosc, date, item) {
    });
 
   console.log(items);
+}
+
+makeDialog = function(content, name) {
+  //Tworzę DialogContainer
+  var dialogContainer = document.createElement('div');
+  //Nazwa Class
+  dialogContainer.className = 'saveDialogContainer';
+  //ustalam miejsce dla Dialog
+  var dialogFrame = document.getElementById('dialogT');
+  dialogFrame.appendChild(dialogContainer);
+
+  //var znacznik2 = document.createElement('input');
+  //znacznik2.setAttribute('type', 'text');
+  //znacznik2.setAttribute('id', 'item'+newItemNameDigit);
+  //znacznik2.setAttribute('placeholder', 'Produkt');
+  //znacznik2.className = 'form-control';
+  //var kontener2 = document.getElementById('item'+newItemNameDigit+'group');
+  //kontener2.appendChild(znacznik2);
 }

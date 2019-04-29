@@ -86,7 +86,9 @@
           Twoja praca może stać się prostsza i przyjemniejsza - to tylko dwa klikniecia!<br>
         </center>
         <script>
-
+        localforage.config({
+            name: 'Hipster PDA App'
+        });
         localforage.keys().then(function(keys) {
   // An array of all the key names.
   console.log(keys);
