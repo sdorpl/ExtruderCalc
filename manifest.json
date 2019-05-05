@@ -1,7 +1,7 @@
 {
   "name": "ExtruderCalc",
   "short_name": "ExCalc",
-  "description": "Prosty kalkulator pracy przy wyt≥aczarce profili PVC.",
+  "description": "Prosty kalkulator pracy przy wyt≈Çaczarce profili PVC.",
   "icons": [{
     "src": "images/ico_192x192.png",
     "sizes": "192x192",
