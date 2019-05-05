@@ -1,11 +1,12 @@
 // ExtruderCalc
 
-const version = "0.6.26";
+
+const version = "0.7.00";
 const cacheName = `excalc-${version}`;
+//document.getElementById('appver').innerHTML = `${version}-beta`;
 var filesToCache = [
   '/',
   '/index.html',
-  '/about.html',
   '/favicon.ico',
   '/images/ico_512x512.png',
   '/images/ico_192x192.png',
@@ -26,33 +27,6 @@ self.addEventListener('install', e => {
     })
   );
 });
-
-//self.addEventListener('install', function(e) {
-//  console.log('[ServiceWorker] Install');
-//  e.waitUntil(
-//    caches.open(cacheName).then(function(cache) {
-//      console.log('[ServiceWorker] Caching app shell');
-//      return cache.addAll(filesToCache);
-//    })
-//  );
-//});
-
-//
-
-//self.addEventListener('message', function (event) {
-//  if (event.data.action === 'skipWaiting') {
-//    self.skipWaiting();
-//  }
-//});
-
-
-//activate
-//self.addEventListener('activate', event => {
-//  event.waitUntil(self.clients.claim());
-//  console.log('[ExtruderCalc SW] Activate');
-//});
-
-//
 
 self.addEventListener('activate', function(e) {
   console.log('[ExtruderCalc SW] Activate');

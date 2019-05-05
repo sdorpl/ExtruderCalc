@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//import { apver } from './ver.js';
 
 (function() {
   'use strict';
@@ -26,12 +27,9 @@
     saveDialog: document.querySelector('.saveDialogContainer'),
     indexForm: document.getElementById('indexForm'),
     theme: showCookie("Theme"),
-    version: "0.6.25"
+    //version: apver()
   };
-
-  localforage.config({
-      name: 'Hipster PDA App'
-  });
+  //alert(app.version);
 
   /*****************************************************************************
    *
@@ -39,7 +37,7 @@
    *
    ****************************************************************************/
   //Set dark
-  document.getElementById('appver').innerHTML = app.version;
+  //document.getElementById('appver').innerHTML = app.version;
   if (!app.theme) {
     setCookie("Theme", "light", 3650);
   }
@@ -59,124 +57,53 @@
     lightTheme();
   });
 
-  if (app.indexForm) {
-    //Obliczam
-    app.indexForm.addEventListener('change', function() {
-      var inputWymiar = document.getElementById('inputWymiar').value;
-      var inputSztuk = document.getElementById('inputSztuk').value;
-      var inputSpeed = document.getElementById('inputSpeed').value;
-      var inputPoIle = document.getElementById('inputPoIle').value;
-      app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
-    });
-    var inputName = document.getElementById('inputName').value;
-    var inputAdnot = document.getElementById('inputAdnot').value;
-    var showButton = document.getElementById('showSaveDialog');
-    var hideButton = document.getElementById('hideSaveDialog')
+  //showSaved
+  document.getElementById('saved-tab').addEventListener('click', function() {
+    let isShowed = document.getElementById('saved_items').className;
+    if(!isShowed) {
+      app.showSaved();
+    }
+  });
+
+
+//  if (app.indexForm) {
+//    //Obliczam
+//    app.indexForm.addEventListener('change', function() {
+//      var inputWymiar = document.getElementById('inputWymiar').value;
+//      var inputSztuk = document.getElementById('inputSztuk').value;
+//      var inputSpeed = document.getElementById('inputSpeed').value;
+//      var inputPoIle = document.getElementById('inputPoIle').value;
+//      app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+//    });
+//    var inputName = document.getElementById('inputName').value;
+//    var inputAdnot = document.getElementById('inputAdnot').value;
+//    var showButton = document.getElementById('showSaveDialog');
+//    var hideButton = document.getElementById('hideSaveDialog')
     //Show saveDialog
-    showButton.addEventListener('click', function() {
-      app.toggleSaveDialog(true);
-    });
+//    showButton.addEventListener('click', function() {
+//      app.toggleSaveDialog(true);
+//    });
 
     //Hide saveDialog
-    hideButton.addEventListener('click', function() {
-      app.toggleSaveDialog(false);
-    });
+//    hideButton.addEventListener('click', function() {
+//      app.toggleSaveDialog(false);
+//    });
 
 
-    document.getElementById('saveInputBase').addEventListener('click', function() {
-      var inputWymiar = document.getElementById('inputWymiar').value;
-      var inputSztuk = document.getElementById('inputSztuk').value;
-      var inputSpeed = document.getElementById('inputSpeed').value;
-      var inputPoIle = document.getElementById('inputPoIle').value;
-      var inputName = document.getElementById('inputName').value;
-      var inputAdnot = document.getElementById('inputAdnot').value;
-      var data = new Date();
-      var licz = app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
-      saveItems(inputName, inputAdnot, inputWymiar, inputPoIle, inputSztuk, inputSpeed, data, licz);
+//    document.getElementById('saveInputBase').addEventListener('click', function() {
+//      var inputWymiar = document.getElementById('inputWymiar').value;
+//      var inputSztuk = document.getElementById('inputSztuk').value;
+//    var inputSpeed = document.getElementById('inputSpeed').value;
+//      var inputPoIle = document.getElementById('inputPoIle').value;
+//      var inputName = document.getElementById('inputName').value;
+//      var inputAdnot = document.getElementById('inputAdnot').value;
+//      var data = new Date();
+//      var licz = app.Licz(inputWymiar, inputSztuk, inputSpeed, inputPoIle);
+//      saveItems(inputName, inputAdnot, inputWymiar, inputPoIle, inputSztuk, inputSpeed, data, licz);
 
-    });
-  }
+//    });
+//  }
 
-  app.Licz = function(wymiar, sztuk, speed, poile) {
-    //Zmienne komunikatów
-    var infoBox = document.getElementById('info');
-    var wynikBox = document.getElementById('wynik_row');
-    var wynikValue = document.getElementById('wynik');
-    var kartonsBox = document.getElementById('kartony_row');
-    var kartonsValue = document.getElementById('kartony');
-
-    var wynikCzas = '';
-    var wynikKartons = '';
-
-
-    //Obliczam czas
-    var czas = (wymiar / 1000) * (sztuk / speed) / 60;
-    //Konwertuje czas do tablicy
-    var czasArray = czas.toString().split('.');
-    //Sprawdzam ilosc rekordow
-    var czasIsArray = czasArray.length;
-    //Wykonuje sprawdzenie czy tablica
-    if (czasIsArray == 1) {
-      var wynikCzas = czasArray[0] + ' Godzin 0 Minut';
-    } else {
-      var minuty = Math.decimal(czasArray[1].substr(0, 2) / 100 * 60, 0);
-      var wynikCzas = czasArray[0] + ' Godzin ' + minuty.toString() + ' Minut';
-    }
-
-    //Obliczam kartony
-    var kartons = sztuk / poile;
-    //Konwertuje czas do tablicy
-    var kartonsArray = kartons.toString().split('.');
-    //Sprawdzam ilosc rekordow
-    var kartonsIsArray = kartonsArray.length;
-    //Wykonuje sprawdzenie czy tablica
-    if (kartonsIsArray == 1) {
-      var wynikKartons = kartonsArray[0] + '';
-    } else {
-      var sztuki = Math.decimal(parseFloat('0.' + kartonsArray[1]) * poile, 0);
-      var wynikKartons = kartonsArray[0] + ' po ' + poile + ' sztuk i reszta ' + sztuki.toString() + ' sztuk';
-    }
-
-    //Jezeli wymiar i speed null
-    if (!wymiar && !speed && !sztuk) {
-      infoBox.innerHTML = "<strong>Uwaga!</strong> Wprowadź dane do formularza!";
-    } else {
-      infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-      if (isNaN(czasArray[0]) || isNaN(kartons)) {
-        wynikBox.setAttribute('hidden', true);
-        infoBox.removeAttribute('hidden');
-        infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-      } else {
-        infoBox.removeAttribute('hidden');
-        infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-
-        if (wynikCzas != 0 && wynikCzas != Infinity) {
-          infoBox.setAttribute('hidden', true);
-          wynikBox.removeAttribute('hidden');
-          wynikValue.innerHTML = "Szacowany czas realizacji: <strong>" + wynikCzas + "</strong>";
-        } else {
-          wynikBox.setAttribute('hidden', true);
-          infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-        }
-
-        if (wynikKartons != 0 && wynikKartons != Infinity) {
-          infoBox.setAttribute('hidden', true);
-          kartonsBox.removeAttribute('hidden');
-          kartonsValue.innerHTML = "Ilość kartonów do zrobienia: : <strong>" + wynikKartons + "</strong>";
-        } else {
-          kartonsBox.setAttribute('hidden', true);
-          infoBox.innerHTML = "<strong>Uwaga!</strong> Dane w formularzu niekompletne! Wypełnij pola oznaczone gwiazdką.";
-        }
-
-      }
-    }
-    var ret = {
-      "kartony": wynikKartons,
-      "czas": wynikCzas,
-    };
-    return ret;
-
-  };
 
   app.toggleSaveDialog = function(visible) {
     if (visible) {
@@ -190,6 +117,44 @@
 
   };
 
+app.showSaved = function() {
+  localforage.keys().then(function(keys) {
+    var table_its = document.getElementById('table_its');
+    var table_nosaved = document.getElementById('nosaved');
+    // An array of all the key names.
+    if(keys.length == 0) {
+      table_nosaved.removeAttribute('hidden');
+      table_its.setAttribute('hidden', true);
+     } else {
+       for (let i = 0; i < keys.length; i++) {
+
+         localforage.getItem(keys[i]).then(function(value) {
+           // This code runs once the value has been loaded
+           // from the offline store.
+           console.log(value.nazwa);
+           var saved_it = document.getElementById('saved_items');
+           var new_tr = document.createElement('tr');
+           var onc = "showItemSaved('"+value.nazwa+"')";
+           new_tr.innerHTML = '<td>'+value.nazwa+'</td>'+
+                              '<td>'+value.adnotacja+'</td>'+
+                              '<td>'+value.wymiar+'</td>'+
+                              '<td>'+value.sztuk+'</td>'+
+                              '<td>'+value.item.kartony+'</td>'+
+                              '<td>'+value.item.czas+'</td>';
+
+           saved_it.appendChild(new_tr);
+           saved_it.className = "showed";
+         }).catch(function(err) {
+           // This code runs if there were any errors
+           console.log(err);
+         });
+       }
+     }
+  }).catch(function(err) {
+    // This code runs if there were any errors
+    console.log(err);
+  });
+};
 
   // TODO add service worker code here
   //  if ('serviceWorker' in navigator) {
@@ -217,32 +182,37 @@
     });
   });
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(reg => {
-      reg.addEventListener('updatefound', () => {
-        // A wild service worker has appeared in reg.installing!
-        newWorker = reg.installing;
-        newWorker.addEventListener('statechange', () => {
-          // Has network.state changed?
-          switch (newWorker.state) {
-            case 'installed':
-              if (navigator.serviceWorker.controller) {
-                // new update available
-                showUpdateBar();
-              }
-              // No update available
-              break;
-          }
-        });
+// Service Worker Initialize
+
+if ('serviceWorker' in navigator) {
+  //navigator.serviceWorker.register('/service-worker.js', { type: "module" })
+  navigator.serviceWorker.register('/service-worker.js').then(reg => {
+    reg.addEventListener('updatefound', () => {
+      // A wild service worker has appeared in reg.installing!
+      newWorker = reg.installing;
+      newWorker.addEventListener('statechange', () => {
+        // Has network.state changed?
+        switch (newWorker.state) {
+          case 'installed':
+            if (navigator.serviceWorker.controller) {
+              // new update available
+              showUpdateBar();
+            }
+            // No update available
+            break;
+        }
       });
     });
-    let refreshing;
-    navigator.serviceWorker.addEventListener('controllerchange', function() {
-      if (refreshing) return;
-      window.location.reload();
-      refreshing = true;
-    });
-  }
+  });
+  let refreshing;
+  navigator.serviceWorker.addEventListener('controllerchange', function() {
+    if (refreshing) return;
+    window.location.reload();
+    refreshing = true;
+  });
+}
+
+
   if (app.isLoading) {
     app.spinner.setAttribute('hidden', true);
     app.container.removeAttribute('hidden');
