@@ -1,7 +1,7 @@
 // ExtruderCalc
 
 
-const version = "0.7.00";
+const version = "0.7.01";
 const cacheName = `excalc-${version}`;
 //document.getElementById('appver').innerHTML = `${version}-beta`;
 var filesToCache = [
@@ -12,7 +12,9 @@ var filesToCache = [
   '/images/ico_192x192.png',
   '/scripts/app.js',
   '/scripts/functions.js',
-  '/css/style.css'
+  '/css/style.css',
+  '/core',
+  '/core/font-awesome/css/all.css'
 ];
 
 //install
