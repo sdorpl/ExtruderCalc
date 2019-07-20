@@ -1,6 +1,6 @@
 {
-  "name": "ExtruderCalc",
-  "short_name": "ExCalc",
+  "name": "ExtruderCalc Beta",
+  "short_name": "ExCalc Beta",
   "description": "Prosty kalkulator pracy przy wytłaczarce profili PVC.",
   "icons": [{
     "src": "images/ico_192x192.png",
@@ -11,7 +11,7 @@
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "start_url": "/",
+  "start_url": "/?utm source=pwaappBeta",
   "background_color": "white",
   "theme_color": "#790005",
   "display": "standalone"
