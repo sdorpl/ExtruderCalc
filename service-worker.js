@@ -6,7 +6,6 @@ const cacheName = `excalc-${version}`;
 //document.getElementById('appver').innerHTML = `${version}-beta`;
 var filesToCache = [
   '/',
-  '/manifest.json',
   '/index.html',
   '/favicon.ico',
   '/images/ico-default.png',
