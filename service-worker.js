@@ -1,11 +1,12 @@
 // ExtruderCalc
 
 
-const version = "0.8.03";
+const version = "0.8.04";
 const cacheName = `excalc-${version}`;
 //document.getElementById('appver').innerHTML = `${version}-beta`;
 var filesToCache = [
   '/',
+  '/manifest.json',
   '/index.html',
   '/favicon.ico',
   '/images/ico_512x512.png',
