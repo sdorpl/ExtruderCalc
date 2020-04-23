@@ -28,7 +28,7 @@
     theme: showCookie("Theme")
     //version: apver()
   };
-  alert(app.theme);
+  //alert(app.theme);
 
   /*****************************************************************************
    *
