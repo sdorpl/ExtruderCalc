@@ -13,7 +13,7 @@
 // limitations under the License.
 
 //import { apver } from './ver.js';
-
+  alert(app.theme);
 (function() {
   'use strict';
 
@@ -29,7 +29,7 @@
     theme: showCookie("Theme")
     //version: apver()
   };
-  //alert(app.version);
+  alert(app.theme);
 
   /*****************************************************************************
    *
