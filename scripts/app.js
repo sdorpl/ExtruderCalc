@@ -13,7 +13,6 @@
 // limitations under the License.
 
 //import { apver } from './ver.js';
-  alert(app.theme);
 (function() {
   'use strict';
 
