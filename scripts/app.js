@@ -13,6 +13,7 @@
 // limitations under the License.
 
 //import { apver } from './ver.js';
+
 (function() {
   'use strict';
 
@@ -25,10 +26,10 @@
     saveDialogButton: document.getElementById('showSaveDialog'),
     saveDialog: document.querySelector('.saveDialogContainer'),
     indexForm: document.getElementById('indexForm'),
-    theme: showCookie("Theme")
+    theme: showCookie("Theme"),
     //version: apver()
   };
-  //alert(app.theme);
+  //alert(app.version);
 
   /*****************************************************************************
    *
