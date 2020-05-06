@@ -11,11 +11,11 @@
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "images/ico-default-large.png",
+      "src": "images/ico-default-maskable-large.png",
       "sizes": "512x512"
     },
     {
-      "src": "images/ico-default.png",
+      "src": "images/ico-default-maskable.png",
       "sizes": "192x192"
     }
   ]
