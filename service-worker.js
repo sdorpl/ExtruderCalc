@@ -1,6 +1,9 @@
 // ExtruderCalc
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js');
 
-const version = "0.8.35";
+workbox.googleAnalytics.initialize();
+
+const version = "0.8.40";
 const cacheName = `excalc-${version}`;
 
 var filesToCache = [
