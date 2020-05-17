@@ -6,26 +6,25 @@
   "theme_color": "#790005",
   "description": "Prosty kalkulator pracy przy wytłaczarce profili PVC.",
   "background_color": "#790005",
-  
+
   "icons": [
     {
-	  "src":"images/ico-default.png",
+	  "src":"images/ico-default.png?v=1",
 	  "sizes":"192x192"
-	}, 
+	},
 	{
-	  "src":"images/ico-default-large.png",
+	  "src":"images/ico-default-large.png?v=1",
 	  "sizes":"512x512"
 	},
     {
-      "src": "images/ico-default-maskable-large.png",
+      "src": "images/ico-default-maskable-large.png?v=1",
       "sizes": "512x512",
 	  "purpose":"maskable"
     },
     {
-      "src": "images/ico-default-maskable.png",
+      "src": "images/ico-default-maskable.png?v=1",
       "sizes": "192x192",
 	  "purpose":"maskable"
     }
   ]
 }
-
