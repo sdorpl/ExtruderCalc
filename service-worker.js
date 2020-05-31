@@ -3,11 +3,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox
 
 workbox.googleAnalytics.initialize();
 
-<<<<<<< HEAD
-const version = "0.8.60";
-=======
-const version = "0.8.55";
->>>>>>> d3ad0f7c206359b969e2ea4fb60e96350a20d2f6
+const version = "0.8.69";
 const cacheName = `excalc-${version}`;
 
 var filesToCache = [
