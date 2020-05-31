@@ -5,7 +5,7 @@
   "short_name": "ExCalc",
   "theme_color": "#790005",
   "description": "Prosty kalkulator pracy przy wytłaczarce profili PVC.",
-  "background_color": "#790005",
+  "background_color": "#ee4131",
 
   "icons": [
     {
