@@ -24,7 +24,7 @@ workbox.googleAnalytics.initialize();
 
 // CODELAB: Update cache names any time any of the cached files change.
 
-const CACHE_NAME = 'excalc-main-20.06.01';
+const CACHE_NAME = 'excalc-main-20.06.02';
 
 
 // CODELAB: Add list of files to cache here.
