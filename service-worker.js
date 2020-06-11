@@ -1,101 +1,92 @@
-// ExtruderCalc
+/*
+ * @license
+ * Your First PWA Codelab (https://g.co/codelabs/pwa)
+ * Copyright 2019 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License
+ */
+
+'use strict';
+
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js');
 
 workbox.googleAnalytics.initialize();
 
-const version = "0.8.69";
-const cacheName = `excalc-${version}`;
+// CODELAB: Update cache names any time any of the cached files change.
 
-var filesToCache = [
+const CACHE_NAME = 'excalc-main-20.06.01';
+
+
+// CODELAB: Add list of files to cache here.
+const FILES_TO_CACHE = [
   '/',
   '/index.html',
-  '/favicon.ico',
   '/scripts/app.js',
-  '/scripts/functions.js',
-  '/css/style.css'
+  '/scripts/install.js',
+  '/styles/inline.css',
+  '/images/add.svg',
+  '/images/install.svg',
+  '/images/sun.svg',
+  '/images/moon.svg',
+  '/images/favicon.ico',
+
 ];
 
-//install
-self.addEventListener('install', e => {
-  const timeStamp = Date.now();
-  console.log('[ExtruderCalc SW] Install');
-  e.waitUntil(
-    caches.open(cacheName).then(cache => {
-      console.log('[ExtruderCalc SW] Send app files to Cache');
-      return cache.addAll(filesToCache)
-        .then(() => self.skipWaiting());
+self.addEventListener('install', (evt) => {
+  console.log('[ServiceWorker] Install');
+// CODELAB: Precache static resources here.
+evt.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      console.log('[ServiceWorker] Pre-caching offline page');
+      return cache.addAll(FILES_TO_CACHE);
     })
-  );
+);
+
+  self.skipWaiting();
 });
 
-self.addEventListener('activate', function(e) {
-  console.log('[ExtruderCalc SW] Activate');
-  e.waitUntil(
-    caches.keys().then(function(keyList) {
-      return Promise.all(keyList.map(function(key) {
-        if (key !== cacheName) {
-          console.log('[ExtruderCalc SW] Remove old chache', key);
+self.addEventListener('activate', (evt) => {
+  console.log('[ServiceWorker] Activate');
+// CODELAB: Remove previous cached data from disk.
+evt.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(keyList.map((key) => {
+        if (key !== CACHE_NAME) {
+          console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
         }
       }));
     })
-  );
-  return self.clients.claim();
+);
+
+  self.clients.claim();
 });
 
-//After install, fetch event is triggered for every page request
+self.addEventListener('fetch', (evt) => {
+  console.log('[ServiceWorker] Fetch', evt.request.url);
+// CODELAB: Add fetch event handler here.
 
-//self.addEventListener("fetch", function (event) {
-//	console.log("Request -->", event.request.url);
-//	//To tell browser to evaluate the result of event
-//	event.respondWith(
-//		caches.match(event.request)
-//    //To match current request with cached request it
-//		.then(function(response) {
-//			//If response found return it, else fetch again.
-//			return response || fetch(event.request);
-//		}).catch(function(error) {
-//			console.error("Error: ", error);
-//		})
-//  );
-//});
-
-//fetch
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.open(cacheName)
-    .then(cache => cache.match(event.request, {
-      ignoreSearch: true
-    }))
-    .then(response => {
-      return response || fetch(event.request);
+evt.respondWith(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(evt.request)
+          .then((response) => {
+            return response || fetch(evt.request);
+          });
     })
-  );
+);
+
+
+
+
+
 });
-
-//self.addEventListener('activate', function(e) {
-//  console.log('[ServiceWorker] Activate');
-//  e.waitUntil(
-//    caches.keys().then(function(keyList) {
-//      return Promise.all(keyList.map(function(key) {
-//        if (key !== cacheName) {
-//          console.log('[ServiceWorker] Removing old cache', key);
-//          return caches.delete(key);
-//        }
-//      }));
-//    })
-//  );
-
-
-/*
- * Fixes a corner case in which the app wasn't returning the latest data.
- * You can reproduce the corner case by commenting out the line below and
- * then doing the following steps: 1) load app for first time so that the
- * initial New York City data is shown 2) press the refresh button on the
- * app 3) go offline 4) reload the app. You expect to see the newer NYC
- * data, but you actually see the initial data. This happens because the
- * service worker is not yet activated. The code below essentially lets
- * you activate the service worker faster.
- */
-//  return self.clients.claim();
-//});

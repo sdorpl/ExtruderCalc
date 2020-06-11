@@ -1,0 +1,334 @@
+/*
+ * @license
+ * Your First PWA Codelab (https://g.co/codelabs/pwa)
+ * Copyright 2019 Google Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  color: #444;
+  font-family: 'Helvetica', 'Verdana', sans-serif;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  align-content: stretch;
+  align-items: stretch;
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+/**
+ * Header
+ */
+
+.header {
+  align-content: center;
+  align-items: stretch;
+  background: #B0122D;
+  box-shadow:
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 2px 9px 1px rgba(0, 0, 0, 0.12),
+    0 4px 2px -2px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 20px;
+  height: 56px;
+  justify-content: flex-start;
+  padding: 16px 16px 0 16px;
+  position: fixed;
+  transition: transform 0.233s cubic-bezier(0, 0, 0.21, 1) 0.1s;
+  width: 100%;
+  will-change: transform;
+  z-index: 1000;
+}
+
+.header h1 {
+  flex: 1;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.header button {
+  border: none;
+  cursor: pointer;
+  height: 24px;
+  margin-right: 16px;
+  opacity: 0.54;
+  outline: none;
+  overflow: hidden;
+  text-indent: -30000px;
+  transition: opacity 0.333s cubic-bezier(0, 0, 0.21, 1);
+  width: 24px;
+}
+
+
+.header #butInstall {
+  background: url(/images/install.svg) center center no-repeat;
+}
+
+.header #butLight {
+  background: url(/images/sun.svg) center center no-repeat;
+}
+
+.header #butDark {
+  background: url(/images/moon.svg) center center no-repeat;
+}
+
+/**
+ * Icons
+ */
+
+.icon {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+
+
+/**
+ * Main body
+ */
+
+.main {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 60px;
+}
+
+.main .btnContainer {
+  bottom: 1rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 1000;
+  opacity: 1;
+}
+
+#btnContainer.hidden {
+  opacity: 0;
+}
+
+.main .btns {
+  background-color: #B0122D;
+  border-radius: 24px;
+  border: solid 1px #dfe1e5;
+  box-shadow: 2px 2px 10px 5px rgba(0,0,0,0.08);
+  color: #fff;
+  bottom: 1rem;
+  height: 49px;
+  padding: 12px;
+  right: 1rem;
+}
+
+.main .fab .icon {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  /* margin-bottom: 1rem; */
+  border: 1px solid transparent;
+  border-radius: 6px;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+/**
+ * Weather forecast card
+ */
+
+ .info-card {
+   padding: 16px;
+ }
+
+.weather-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  margin: 16px;
+  padding: 16px;
+  position: relative;
+}
+
+.weather-card .remove-city {
+  background-color: transparent;
+  border: none;
+  float: right;
+  font-size: x-large;
+}
+
+.weather-card .location {
+  font-size: 1.75em;
+}
+
+.weather-card .date,
+.weather-card .description {
+  font-size: 1.25em;
+}
+
+.weather-card .current {
+  display: flex;
+}
+
+.weather-card .current .icon {
+  height: 128px;
+  width: 128px;
+}
+
+.weather-card .current .visual {
+  display: flex;
+  font-size: 4em;
+}
+
+.weather-card .current .visual .scale {
+  font-size: 0.5em;
+  vertical-align: super;
+}
+
+.weather-card .current .visual,
+.weather-card .current .description {
+  flex-grow: 1;
+}
+
+.weather-card .current .description .label {
+  color: #666;
+}
+
+.weather-card .future {
+  display: flex;
+}
+
+.weather-card .future .oneday {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.weather-card .future .oneday .icon {
+  height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 64px;
+}
+
+.weather-card .future .oneday .temp-high,
+.weather-card .future .oneday .temp-low {
+  display: inline-block;
+}
+
+.weather-card .future .oneday .temp-low {
+  color: #666;
+}
+
+/**
+  * Forms
+*/
+
+input {
+  width: 100%;
+  border-radius: 24px;
+  height: 45px;
+  padding: 18px;
+  border: solid 1px #dfe1e5;
+  box-shadow: 2px 2px 10px 5px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+/**
+  * Dark theme
+  */
+
+  body.dark {
+    color: #f0f0f0;
+    background: #212121;
+  }
+
+  .header.dark {
+    background: #303030;
+  }
+
+  .weather-card.dark {
+    background: #000;
+  }
+
+  .form-control.dark {
+    color: #f0f0f0;
+    background-color: #212121;
+    border-color: #383838;
+  }
+
+/**
+ * Media query to adjust size of content for small screens
+ */
+
+@media (max-width: 450px) {
+  .weather-card .date,
+  .weather-card .description {
+    font-size: 0.9em;
+  }
+
+  .weather-card .current .icon {
+    height: 96px;
+    width: 96px;
+  }
+
+  .weather-card .current .visual {
+    font-size: 3em;
+  }
+
+  .weather-card .future .oneday .icon {
+    height: 32px;
+    width: 32px;
+  }
+}
